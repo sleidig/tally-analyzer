@@ -7,11 +7,27 @@ import xlsx from 'node-xlsx';
 export class XlsxParserService {
   constructor() {}
 
+  async loadFilesFromEvent($event: Event): Promise<Worksheet[][]> {
+    const target = $event.target as HTMLInputElement;
+    if (!target.files) {
+      return [];
+    }
+
+    const files = [];
+    for (let i = 0; i < target.files.length; i++) {
+      const f = target.files.item(i);
+      if (!f) {
+        continue;
+      }
+      files.push(await this.parseFile(f));
+    }
+
+    return files;
+  }
+
   async parseFile(file: File): Promise<Worksheet[]> {
     const fileContent = await readFile(file);
-    const workSheetsFromBuffer = xlsx.parse(fileContent);
-    console.log(workSheetsFromBuffer);
-    return workSheetsFromBuffer;
+    return xlsx.parse(fileContent, { cellDates: true });
   }
 }
 
