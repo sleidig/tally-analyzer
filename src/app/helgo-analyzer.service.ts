@@ -18,7 +18,7 @@ const budgetMappings = new Map([
   ['School Fees Etc', 'School Fees'],
   ['Fees for the Professional Courses Etc.', 'VT Fees'],
   [
-    'Educational Trip for the Project Children(Local)',
+    'Educational Trip for the Project Children',
     'Excursions & Special Activities',
   ],
   ['Fooding Exp. for the Project Children', 'Food'],

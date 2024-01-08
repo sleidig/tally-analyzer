@@ -48,14 +48,12 @@ export class TallyParserService {
   private splitIntoRecords(data: any[][]): RawRecord[] {
     const records: any[][] = [];
 
-    let currentRecord = [];
+    let currentRecord: any[][] = [];
     for (let i = 0; i < data.length; i++) {
       if (data[i][0]) {
-        // add previous record and start a new one
-        if (currentRecord.length > 0) {
-          records.push(currentRecord);
-        }
+        // add a new record
         currentRecord = [];
+        records.push(currentRecord);
       }
 
       currentRecord.push(data[i]);
