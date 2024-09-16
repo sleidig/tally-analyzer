@@ -68,18 +68,18 @@ export class TallyParserService {
    * @private
    */
   private parseRawRecord(r: RawRecord): ExpenseRecord[] {
-    if (!r[0][8]) {
+    if (!r[0][4]) {
       // skip if the primary (first) entry is credit not debit
       return [];
     }
 
     const date = moment(r[0][0]).format('YYYY-MM-DD');
-    const voucherNo = r[0][7];
+    const voucherNo = r[0][3];
     const narration = r[r.length - 1][1];
 
     const expenses = [];
     for (let i = 0; i < r.length - 1; i++) {
-      const amount = r[i][8];
+      const amount = r[i][4];
       if (!amount) {
         continue;
       }
